@@ -20,7 +20,13 @@ export function GameBoardPage() {
   const [gameTitle, setGameTitle] = useState('Hochzeitsmemory');
 
   useEffect(() => {
-    const playerNames = JSON.parse(sessionStorage.getItem('players') || '[]') as string[];
+    let playerNames: string[];
+    try {
+      const raw = JSON.parse(sessionStorage.getItem('players') || '[]');
+      playerNames = Array.isArray(raw) ? raw.filter((n): n is string => typeof n === 'string') : [];
+    } catch {
+      playerNames = [];
+    }
     if (playerNames.length < 2) {
       navigate('/admin');
       return;

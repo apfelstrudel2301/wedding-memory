@@ -7,6 +7,8 @@ import {
 } from '../storage/db';
 import { compressImage } from '../utils/compressImage';
 
+const MAX_IMAGES = 100;
+
 export function useImagePairs() {
   const [images, setImages] = useState<UploadedImage[]>([]);
   const [pairs, setPairs] = useState<ImagePair[]>([]);
@@ -37,7 +39,12 @@ export function useImagePairs() {
   );
 
   const uploadImages = useCallback(async (files: File[]) => {
-    const compressed = await Promise.all(files.map(f => compressImage(f)));
+    const remaining = MAX_IMAGES - images.length;
+    if (remaining <= 0) {
+      throw new Error(`Maximale Anzahl von ${MAX_IMAGES} Bildern erreicht.`);
+    }
+    const toUpload = files.slice(0, remaining);
+    const compressed = await Promise.all(toUpload.map(f => compressImage(f)));
     const newImages: UploadedImage[] = compressed.map(blob => ({
       id: crypto.randomUUID(),
       image: blob,
@@ -45,7 +52,7 @@ export function useImagePairs() {
     }));
     await saveImages(newImages);
     setImages(prev => [...prev, ...newImages]);
-  }, []);
+  }, [images.length]);
 
   const createPair = useCallback(async (imageAId: string, imageBId: string) => {
     const pair: ImagePair = {

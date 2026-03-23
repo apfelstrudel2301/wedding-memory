@@ -15,6 +15,13 @@
   color: var(--color-text);
 }
 
+.storageHint {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  text-align: center;
+  margin: 0;
+}
+
 .dropZone {
   width: 100%;
   min-height: 140px;
@@ -66,4 +73,11 @@
 
 .fileInput {
   display: none;
+}
+
+.error {
+  color: var(--color-danger, #c0392b);
+  font-size: 0.85rem;
+  text-align: center;
+  margin: 0;
 }
