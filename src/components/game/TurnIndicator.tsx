@@ -7,7 +7,7 @@ interface TurnIndicatorProps {
 export function TurnIndicator({ playerName }: TurnIndicatorProps) {
   return (
     <div className={styles.indicator} key={playerName}>
-      <span className={styles.text}>{playerName}'s Turn</span>
+      <span className={styles.text}>{playerName} ist dran</span>
     </div>
   );
 }

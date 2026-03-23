@@ -12,7 +12,7 @@ export function PairList({ pairs, images, onUnpair }: PairListProps) {
   if (pairs.length === 0) {
     return (
       <p className={styles.empty}>
-        No pairs yet. Upload images and select two to create a pair.
+        Noch keine Paare. Lade Bilder hoch und wähle zwei aus, um ein Paar zu erstellen.
       </p>
     );
   }
@@ -20,7 +20,7 @@ export function PairList({ pairs, images, onUnpair }: PairListProps) {
   return (
     <div>
       <p className={styles.count}>
-        {pairs.length} pair{pairs.length !== 1 ? 's' : ''} saved ({pairs.length * 2} cards)
+        {pairs.length} {pairs.length !== 1 ? 'Paare' : 'Paar'} gespeichert ({pairs.length * 2} Karten)
       </p>
       <div className={styles.grid}>
         {pairs.map(pair => (

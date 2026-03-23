@@ -9,6 +9,19 @@ type GameAction =
   | { type: 'NEXT_TURN' }
   | { type: 'RESET'; cards: GameCard[]; players: Player[] };
 
+const PAIR_COLORS = [
+  '#b76e79', // rose
+  '#7d9e7e', // sage
+  '#6b8cae', // dusty blue
+  '#c9a96e', // gold
+  '#9b7bb8', // lavender
+  '#d4856a', // terracotta
+  '#5e9e9e', // teal
+  '#c47d9e', // mauve
+  '#8a9a5b', // olive
+  '#d4a06a', // amber
+];
+
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -61,9 +74,14 @@ function gameReducer(state: GameState, action: GameAction): GameState {
       const { firstFlippedCard, secondFlippedCard } = state;
       if (!firstFlippedCard || !secondFlippedCard) return state;
 
+      const matchedPairCount = new Set(
+        state.cards.filter(c => c.isMatched).map(c => c.pairId)
+      ).size;
+      const matchColor = PAIR_COLORS[matchedPairCount % PAIR_COLORS.length];
+
       const cards = state.cards.map(c =>
         c.id === firstFlippedCard.id || c.id === secondFlippedCard.id
-          ? { ...c, isMatched: true, isFlipped: true }
+          ? { ...c, isMatched: true, isFlipped: true, matchColor }
           : c
       );
 

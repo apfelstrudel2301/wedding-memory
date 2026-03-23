@@ -35,7 +35,7 @@ export function ImageUploader({ onUpload }: ImageUploaderProps) {
 
   return (
     <div className={styles.uploader}>
-      <h3 className={styles.heading}>Upload Images</h3>
+      <h3 className={styles.heading}>Bilder hochladen</h3>
       <div
         className={`${styles.dropZone} ${isDragging ? styles.dragging : ''}`}
         onDragOver={(e) => { handleDrag(e); setIsDragging(true); }}
@@ -45,13 +45,13 @@ export function ImageUploader({ onUpload }: ImageUploaderProps) {
       >
         {uploading ? (
           <div className={styles.placeholder}>
-            <span className={styles.label}>Compressing images...</span>
+            <span className={styles.label}>Bilder werden komprimiert...</span>
           </div>
         ) : (
           <div className={styles.placeholder}>
             <span className={styles.icon}>+</span>
-            <span className={styles.label}>Drop images or click to select</span>
-            <span className={styles.hint}>Select multiple files at once</span>
+            <span className={styles.label}>Bilder hierher ziehen oder klicken</span>
+            <span className={styles.hint}>Mehrere Dateien gleichzeitig auswählen</span>
           </div>
         )}
         <input

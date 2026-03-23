@@ -18,6 +18,7 @@ export interface GameCard {
   imageUrl: string;
   isFlipped: boolean;
   isMatched: boolean;
+  matchColor?: string;
 }
 
 export interface Player {

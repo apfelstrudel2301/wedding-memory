@@ -26,8 +26,8 @@ export function ResultsPage() {
   return (
     <div className={styles.page}>
       <WeddingHeader
-        title={isTie ? "It's a Tie!" : `${winners[0].name} Wins!`}
-        subtitle="What a wonderful game"
+        title={isTie ? "Gleichstand!" : `${winners[0].name} gewinnt!`}
+        subtitle="Was für ein tolles Spiel"
       />
 
       <div className={styles.celebration}>
@@ -45,7 +45,7 @@ export function ResultsPage() {
               <span className={styles.rank}>{i + 1}</span>
               <span className={styles.name}>{player.name}</span>
               <span className={styles.score}>
-                {player.score} pair{player.score !== 1 ? 's' : ''}
+                {player.score} {player.score !== 1 ? 'Paare' : 'Paar'}
               </span>
             </div>
           );
@@ -54,10 +54,10 @@ export function ResultsPage() {
 
       <div className={styles.actions}>
         <Button variant="secondary" to="/players">
-          Play Again
+          Nochmal spielen
         </Button>
         <Button variant="gold" to="/">
-          Home
+          Startseite
         </Button>
       </div>
     </div>

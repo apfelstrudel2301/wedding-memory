@@ -4,18 +4,23 @@ interface CardProps {
   imageUrl: string;
   isFlipped: boolean;
   isMatched: boolean;
+  matchColor?: string;
   onClick: () => void;
 }
 
-export function Card({ imageUrl, isFlipped, isMatched, onClick }: CardProps) {
+export function Card({ imageUrl, isFlipped, isMatched, matchColor, onClick }: CardProps) {
   const className = [
     styles.card,
     isFlipped || isMatched ? styles.flipped : '',
     isMatched ? styles.matched : '',
   ].join(' ');
 
+  const style = isMatched && matchColor
+    ? { '--match-color': matchColor } as React.CSSProperties
+    : undefined;
+
   return (
-    <div className={className} onClick={onClick}>
+    <div className={className} onClick={onClick} style={style}>
       <div className={styles.inner}>
         <div className={styles.back}>
           <div className={styles.backDesign}>
@@ -25,7 +30,7 @@ export function Card({ imageUrl, isFlipped, isMatched, onClick }: CardProps) {
           </div>
         </div>
         <div className={styles.front}>
-          <img src={imageUrl} alt="Card" className={styles.image} />
+          <img src={imageUrl} alt="Karte" className={styles.image} />
         </div>
       </div>
     </div>

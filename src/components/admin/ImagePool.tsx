@@ -36,7 +36,7 @@ function PoolThumbnail({
       <button
         className={styles.deleteBtn}
         onClick={(e) => { e.stopPropagation(); onDelete(); }}
-        title="Remove image"
+        title="Bild entfernen"
       >
         &times;
       </button>
@@ -74,11 +74,11 @@ export function ImagePool({ images, onCreatePair, onDeleteImage }: ImagePoolProp
 
   return (
     <div className={styles.pool}>
-      <h3 className={styles.heading}>Unpaired Images</h3>
+      <h3 className={styles.heading}>Nicht zugeordnete Bilder</h3>
       <p className={styles.hint}>
         {selectedId
-          ? 'Now select the second image to complete the pair'
-          : 'Select two images to create a pair'}
+          ? 'Wähle jetzt das zweite Bild, um das Paar zu vervollständigen'
+          : 'Wähle zwei Bilder aus, um ein Paar zu erstellen'}
       </p>
       <div className={styles.grid}>
         {images.map(img => (

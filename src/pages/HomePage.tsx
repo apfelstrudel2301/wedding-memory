@@ -15,34 +15,34 @@ export function HomePage() {
     <div className={styles.page}>
       <div className={styles.hero}>
         <WeddingHeader
-          title="Memory Game"
-          subtitle="A special game for a special day"
+          title="Hochzeitsmemory"
+          subtitle="Ein besonderes Spiel für einen besonderen Tag"
         />
 
         <div className={styles.buttons}>
           <Button variant="secondary" to="/admin">
-            Set Up Game
+            Spiel einrichten
           </Button>
           {pairCount >= 2 ? (
-            <Button variant="gold" to="/players">
-              Play!
+            <Button variant="gold" to="/admin">
+              Los geht's!
             </Button>
           ) : (
             <Button variant="gold" disabled>
-              Play!
+              Los geht's!
             </Button>
           )}
         </div>
 
         {pairCount < 2 && (
           <p className={styles.hint}>
-            Upload at least 2 image pairs to start playing
+            Lade mindestens 2 Bildpaare hoch, um zu spielen
           </p>
         )}
 
         {pairCount >= 2 && (
           <p className={styles.ready}>
-            {pairCount} pair{pairCount !== 1 ? 's' : ''} ready
+            {pairCount} {pairCount !== 1 ? 'Bildpaare' : 'Bildpaar'} sind bereit
           </p>
         )}
       </div>

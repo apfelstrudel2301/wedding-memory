@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { WeddingHeader } from '../components/layout/WeddingHeader';
 import { CardGrid } from '../components/game/CardGrid';
 import { ScoreBoard } from '../components/game/ScoreBoard';
 import { TurnIndicator } from '../components/game/TurnIndicator';
+import { Fireworks } from '../components/game/Fireworks';
 import { useGameLogic, createCardsFromPairs } from '../hooks/useGameLogic';
 import { getAllPairs, getAllImages } from '../storage/db';
 import type { Player, GameCard } from '../types';
@@ -15,12 +16,16 @@ export function GameBoardPage() {
   const [initialPlayers, setInitialPlayers] = useState<Player[] | null>(null);
   const objectUrlsRef = useRef<string[]>([]);
 
+  const [gameTitle, setGameTitle] = useState('Hochzeitsmemory');
+
   useEffect(() => {
     const playerNames = JSON.parse(sessionStorage.getItem('players') || '[]') as string[];
     if (playerNames.length < 2) {
-      navigate('/players');
+      navigate('/admin');
       return;
     }
+
+    setGameTitle(sessionStorage.getItem('gameTitle') || 'Hochzeitsmemory');
 
     const players: Player[] = playerNames.map((name) => ({
       id: crypto.randomUUID(),
@@ -47,23 +52,42 @@ export function GameBoardPage() {
   if (!initialCards || !initialPlayers) {
     return (
       <div className={styles.loading}>
-        <p>Loading game...</p>
+        <p>Spiel wird geladen...</p>
       </div>
     );
   }
 
-  return <GameBoard initialCards={initialCards} initialPlayers={initialPlayers} />;
+  return <GameBoard initialCards={initialCards} initialPlayers={initialPlayers} gameTitle={gameTitle} />;
 }
 
 function GameBoard({
   initialCards,
   initialPlayers,
+  gameTitle,
 }: {
   initialCards: GameCard[];
   initialPlayers: Player[];
+  gameTitle: string;
 }) {
   const navigate = useNavigate();
   const { state, flipCard } = useGameLogic(initialCards, initialPlayers);
+  const [showFireworks, setShowFireworks] = useState(false);
+
+  const matchedCount = useMemo(
+    () => state.cards.filter(c => c.isMatched).length,
+    [state.cards]
+  );
+  const prevMatchedRef = useRef(matchedCount);
+
+  useEffect(() => {
+    if (matchedCount > prevMatchedRef.current) {
+      setShowFireworks(true);
+      const timer = setTimeout(() => setShowFireworks(false), 1200);
+      prevMatchedRef.current = matchedCount;
+      return () => clearTimeout(timer);
+    }
+    prevMatchedRef.current = matchedCount;
+  }, [matchedCount]);
 
   useEffect(() => {
     if (state.isGameOver) {
@@ -79,17 +103,18 @@ function GameBoard({
 
   return (
     <div className={styles.page}>
-      <WeddingHeader title="Memory Game" />
+      <WeddingHeader title={gameTitle} />
       <ScoreBoard
         players={state.players}
         activePlayerIndex={state.activePlayerIndex}
       />
       <TurnIndicator playerName={currentPlayer.name} />
       <CardGrid cards={state.cards} onCardClick={flipCard} />
+      <Fireworks active={showFireworks} />
 
       {state.isGameOver && (
         <div className={styles.gameOver}>
-          <p className={styles.gameOverText}>All pairs found!</p>
+          <p className={styles.gameOverText}>Alle Paare gefunden!</p>
         </div>
       )}
     </div>

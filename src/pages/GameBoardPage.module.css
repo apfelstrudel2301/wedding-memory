@@ -1,5 +1,9 @@
 .page {
-  padding-bottom: 40px;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 16px 24px;
 }
 
 .loading {
