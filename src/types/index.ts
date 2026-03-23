@@ -35,4 +35,5 @@ export interface GameState {
   secondFlippedCard: GameCard | null;
   isChecking: boolean;
   isGameOver: boolean;
+  moves: number;
 }

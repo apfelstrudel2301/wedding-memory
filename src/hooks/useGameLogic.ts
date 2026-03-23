@@ -53,6 +53,7 @@ function gameReducer(state: GameState, action: GameAction): GameState {
         cards,
         secondFlippedCard: card,
         isChecking: true,
+        moves: state.moves + 1,
       };
     }
 
@@ -144,6 +145,7 @@ function createInitialState(cards: GameCard[], players: Player[]): GameState {
     secondFlippedCard: null,
     isChecking: false,
     isGameOver: false,
+    moves: 0,
   };
 }
 

@@ -36,7 +36,7 @@ function createBurst(x: number, y: number, count: number): Particle[] {
   return particles;
 }
 
-export function Fireworks({ active }: { active: boolean }) {
+export function Fireworks({ active, intensity = 'normal' }: { active: boolean; intensity?: 'normal' | 'high' }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
 
@@ -58,10 +58,14 @@ export function Fireworks({ active }: { active: boolean }) {
 
     let particles: Particle[] = [];
 
-    // Create 3 bursts at different positions
-    particles.push(...createBurst(w * 0.5, h * 0.4, 40));
-    particles.push(...createBurst(w * 0.3, h * 0.35, 25));
-    particles.push(...createBurst(w * 0.7, h * 0.35, 25));
+    const isHigh = intensity === 'high';
+    particles.push(...createBurst(w * 0.5, h * 0.4, isHigh ? 60 : 40));
+    particles.push(...createBurst(w * 0.3, h * 0.35, isHigh ? 40 : 25));
+    particles.push(...createBurst(w * 0.7, h * 0.35, isHigh ? 40 : 25));
+    if (isHigh) {
+      particles.push(...createBurst(w * 0.2, h * 0.5, 30));
+      particles.push(...createBurst(w * 0.8, h * 0.5, 30));
+    }
 
     const decay = 0.015;
     const gravity = 0.06;

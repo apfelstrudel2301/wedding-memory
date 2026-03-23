@@ -3,6 +3,15 @@
   margin-bottom: 12px;
 }
 
+.compact {
+  margin-bottom: 4px;
+}
+
+.compact .title {
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
 .ornament {
   font-size: 1.2rem;
   color: var(--color-gold);

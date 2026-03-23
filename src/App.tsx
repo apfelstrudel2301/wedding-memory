@@ -3,7 +3,6 @@ import { PageWrapper } from './components/layout/PageWrapper';
 import { HomePage } from './pages/HomePage';
 import { AdminSetupPage } from './pages/AdminSetupPage';
 import { GameBoardPage } from './pages/GameBoardPage';
-import { ResultsPage } from './pages/ResultsPage';
 
 function App() {
   return (
@@ -12,7 +11,6 @@ function App() {
         <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
         <Route path="/admin" element={<PageWrapper><AdminSetupPage /></PageWrapper>} />
         <Route path="/game" element={<GameBoardPage />} />
-        <Route path="/results" element={<PageWrapper><ResultsPage /></PageWrapper>} />
       </Routes>
     </BrowserRouter>
   );
