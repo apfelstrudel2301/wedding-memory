@@ -34,7 +34,7 @@
 }
 
 .playerHeading {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.3rem;
   text-align: center;
   color: var(--color-text);
