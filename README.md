@@ -5,7 +5,7 @@ A wedding-themed memory card game built with React. Upload custom image pairs, t
 ## How It Works
 
 1. **Set up** — The game organizer uploads pairs of related images (e.g., bride's childhood photo paired with groom's childhood photo)
-2. **Add players** — Enter 2-8 player names
+2. **Add players** — Enter player names and a game title
 3. **Play** — Players take turns flipping two cards. If the cards are a matching pair, the player scores a point and goes again. If not, the next player takes a turn.
 4. **Winner** — The player with the most matched pairs wins
 
@@ -23,17 +23,17 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 | Route | Description |
 |---|---|
 | `/` | Welcome screen |
-| `/admin` | Upload and manage image pairs |
-| `/players` | Enter player names |
+| `/admin` | Upload images, create pairs, configure players |
 | `/game` | The memory game board |
-| `/results` | Final scores and winner |
+
+Uses `HashRouter` — routes are hash-based (e.g., `/#/admin`).
 
 ## Tech Stack
 
 - **React 19** + TypeScript
 - **Vite** for dev/build tooling
-- **React Router** for client-side navigation
-- **IndexedDB** (via `idb`) for storing uploaded images as compressed Blobs
+- **React Router** (v7, HashRouter) for client-side navigation
+- **IndexedDB** (via `idb`) for storing uploaded images as compressed blobs
 - **CSS Modules** with a custom wedding color palette
 
 ## Project Structure
@@ -41,8 +41,8 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 ```
 src/
 ├── components/
-│   ├── admin/       # PairUploader, PairPreviewCard, PairList
-│   ├── game/        # Card, CardGrid, ScoreBoard, TurnIndicator
+│   ├── admin/       # ImageUploader, ImagePool, PairPreviewCard, PairList
+│   ├── game/        # Card, CardGrid, ScoreBoard, Fireworks
 │   ├── layout/      # PageWrapper, WeddingHeader
 │   └── ui/          # Button, Input, Modal
 ├── hooks/
