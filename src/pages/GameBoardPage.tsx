@@ -27,7 +27,7 @@ export function GameBoardPage() {
     } catch {
       playerNames = [];
     }
-    if (playerNames.length < 2) {
+    if (playerNames.length < 1) {
       navigate('/admin');
       return;
     }
@@ -153,6 +153,7 @@ function GameBoard({
       <ScoreBoard
         players={state.players}
         activePlayerIndex={state.activePlayerIndex}
+        moves={state.players.length === 1 ? state.moves : undefined}
       />
       <CardGrid cards={state.cards} onCardClick={flipCard} />
 

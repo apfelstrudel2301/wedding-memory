@@ -198,10 +198,11 @@ export function useGameLogic(initialCards: GameCard[], initialPlayers: Player[])
         dispatch({ type: 'MATCH_FOUND' });
       } else {
         dispatch({ type: 'MATCH_FAILED' });
-        // Small delay then advance turn
-        setTimeout(() => {
-          dispatch({ type: 'NEXT_TURN' });
-        }, 50);
+        if (state.players.length > 1) {
+          setTimeout(() => {
+            dispatch({ type: 'NEXT_TURN' });
+          }, 50);
+        }
       }
     }, 1200);
 

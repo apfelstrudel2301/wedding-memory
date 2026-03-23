@@ -18,7 +18,7 @@ export function AdminSetupPage() {
   } = useImagePairs();
   const [showClearModal, setShowClearModal] = useState(false);
   const [gameTitle, setGameTitle] = useState('');
-  const [playerNames, setPlayerNames] = useState(['', '']);
+  const [playerNames, setPlayerNames] = useState(['']);
 
   const addPlayer = () => {
     if (playerNames.length < 8) {
@@ -27,7 +27,7 @@ export function AdminSetupPage() {
   };
 
   const removePlayer = (index: number) => {
-    if (playerNames.length > 2) {
+    if (playerNames.length > 1) {
       setPlayerNames(playerNames.filter((_, i) => i !== index));
     }
   };
@@ -91,7 +91,7 @@ export function AdminSetupPage() {
                 value={name}
                 onChange={(e) => updateName(i, e.target.value)}
               />
-              {playerNames.length > 2 && (
+              {playerNames.length > 1 && (
                 <button
                   className={styles.removeBtn}
                   onClick={() => removePlayer(i)}

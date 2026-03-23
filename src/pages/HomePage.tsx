@@ -14,7 +14,7 @@ export function HomePage() {
   }, []);
 
   const handleStart = () => {
-    sessionStorage.setItem('players', JSON.stringify(['Spieler 1', 'Spieler 2']));
+    sessionStorage.setItem('players', JSON.stringify(['Spieler 1']));
     sessionStorage.setItem('gameTitle', 'Hochzeitsmemory');
     navigate('/game');
   };
