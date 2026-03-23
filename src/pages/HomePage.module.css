@@ -1,0 +1,32 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80dvh;
+}
+
+.hero {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.hint {
+  margin-top: 20px;
+  color: var(--color-text-light);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.ready {
+  margin-top: 20px;
+  color: var(--color-success);
+  font-size: 0.9rem;
+  font-weight: 600;
+}

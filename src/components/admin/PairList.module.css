@@ -1,0 +1,19 @@
+.count {
+  text-align: center;
+  color: var(--color-text-light);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--color-text-light);
+  font-style: italic;
+  padding: 40px 0;
+}

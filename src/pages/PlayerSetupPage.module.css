@@ -1,0 +1,80 @@
+.page {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.playerList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.playerRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.playerRow > :first-child {
+  flex: 1;
+}
+
+.removeBtn {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-button);
+  background: var(--color-surface);
+  color: var(--color-danger);
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  margin-bottom: 1px;
+}
+
+.removeBtn:hover {
+  background: var(--color-danger);
+  color: white;
+  border-color: var(--color-danger);
+}
+
+.addBtn {
+  display: block;
+  margin: 0 auto 24px;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: color 0.2s ease;
+}
+
+.addBtn:hover {
+  color: var(--color-primary-dark);
+}
+
+.warning {
+  text-align: center;
+  color: var(--color-danger);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}

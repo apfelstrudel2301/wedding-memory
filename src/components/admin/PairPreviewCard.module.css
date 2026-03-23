@@ -1,0 +1,56 @@
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 12px;
+  position: relative;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.images {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.thumb {
+  width: 80px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.pairSymbol {
+  color: var(--color-gold);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-danger);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: var(--color-danger);
+  color: white;
+  border-color: var(--color-danger);
+}

@@ -1,0 +1,66 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-button);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.primary {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--color-secondary);
+  border-color: var(--color-primary);
+}
+
+.danger {
+  background: transparent;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.danger:hover:not(:disabled) {
+  background: var(--color-danger);
+  color: white;
+}
+
+.gold {
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-light));
+  color: var(--color-text);
+  border-color: var(--color-gold);
+}
+
+.gold:hover:not(:disabled) {
+  box-shadow: 0 4px 16px rgba(201, 169, 110, 0.35);
+}

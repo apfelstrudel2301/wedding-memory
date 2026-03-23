@@ -1,0 +1,79 @@
+.page {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.celebration {
+  margin: 16px 0 32px;
+}
+
+.trophy {
+  font-size: 3rem;
+  color: var(--color-gold);
+  display: inline-block;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.playerRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--color-surface);
+  border-radius: var(--radius-button);
+  box-shadow: var(--shadow-card);
+  border: 2px solid transparent;
+}
+
+.winner {
+  border-color: var(--color-gold);
+  background: linear-gradient(to right, var(--color-surface), rgba(232, 213, 163, 0.15));
+}
+
+.rank {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  width: 30px;
+}
+
+.winner .rank {
+  color: var(--color-gold);
+}
+
+.name {
+  flex: 1;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-align: left;
+}
+
+.score {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.winner .score {
+  color: var(--color-gold);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
