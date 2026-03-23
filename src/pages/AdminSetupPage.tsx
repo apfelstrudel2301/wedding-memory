@@ -116,9 +116,11 @@ export function AdminSetupPage() {
             Alles löschen
           </Button>
         )}
-        <Button variant="gold" onClick={handleStart} disabled={pairs.length < 2}>
-          Spiel starten
-        </Button>
+        <span title={pairs.length < 2 ? 'Bitte zuerst Bilder hochladen und mindestens 2 Paare erstellen' : undefined}>
+          <Button variant="gold" onClick={handleStart} disabled={pairs.length < 2}>
+            Spiel starten
+          </Button>
+        </span>
         <Button variant="secondary" to="/">
           Zurück zur Startseite
         </Button>

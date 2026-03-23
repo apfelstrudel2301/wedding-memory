@@ -81,7 +81,7 @@
 
 .matched .front {
   box-shadow: 0 0 20px color-mix(in srgb, var(--match-color, var(--color-gold)) 40%, transparent);
-  border: 3px solid var(--match-color, var(--color-gold));
+  border: 6px solid var(--match-color, var(--color-gold));
 }
 
 .card:hover:not(.flipped):not(.matched) .inner {

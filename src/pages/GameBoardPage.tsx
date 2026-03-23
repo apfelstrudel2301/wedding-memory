@@ -98,15 +98,12 @@ function GameBoard({
           const matched = state.cards.filter(c => c.pairId === pairId);
           if (matched.length === 2) {
             setMatchPreview({ imageA: matched[0].imageUrl, imageB: matched[1].imageUrl });
-            const previewTimer = setTimeout(() => setMatchPreview(null), 2500);
-            // Cleanup handled below
             prevMatchedPairIdsRef.current = matchedPairIds;
 
             setShowFireworks(true);
             const fireworksTimer = setTimeout(() => setShowFireworks(false), 1200);
 
             return () => {
-              clearTimeout(previewTimer);
               clearTimeout(fireworksTimer);
             };
           }
@@ -116,13 +113,20 @@ function GameBoard({
     prevMatchedPairIdsRef.current = matchedPairIds;
   }, [matchedPairIds, state.cards]);
 
-  useEffect(() => {
+  const [gameOverFireworks, setGameOverFireworks] = useState(false);
+
+  const dismissMatchPreview = () => {
+    setMatchPreview(null);
     if (state.isGameOver) {
-      setShowFireworks(true);
-      const timer = setTimeout(() => setShowFireworks(false), 3000);
-      return () => clearTimeout(timer);
+      setShowFireworks(false);
+      // Brief delay so the Fireworks component remounts with high intensity
+      requestAnimationFrame(() => {
+        setGameOverFireworks(true);
+        setShowFireworks(true);
+        setTimeout(() => setShowFireworks(false), 8000);
+      });
     }
-  }, [state.isGameOver]);
+  };
 
   return (
     <div className={styles.page}>
@@ -147,7 +151,7 @@ function GameBoard({
       <CardGrid cards={state.cards} onCardClick={flipCard} />
 
       {matchPreview && (
-        <div className={styles.matchPreviewOverlay} onClick={() => setMatchPreview(null)}>
+        <div className={styles.matchPreviewOverlay} onClick={dismissMatchPreview}>
           <div className={styles.matchPreviewImages}>
             <img src={matchPreview.imageA} className={styles.matchPreviewImage} alt="" />
             <img src={matchPreview.imageB} className={styles.matchPreviewImage} alt="" />
@@ -155,7 +159,7 @@ function GameBoard({
         </div>
       )}
 
-      <Fireworks active={showFireworks} intensity={state.isGameOver ? 'high' : 'normal'} />
+      <Fireworks active={showFireworks} intensity={gameOverFireworks ? 'high' : 'normal'} />
     </div>
   );
 }
